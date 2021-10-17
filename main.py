@@ -9,7 +9,7 @@ pygame.init()
 screen = pygame.display.set_mode((1280, 1000))
 
 # Initialize
-pygame.display.set_caption('better osu!mania')
+pygame.display.set_caption('Twist Twist Revolution')
 icon = pygame.image.load('assets/keyboard.png')
 background = pygame.image.load('assets/bg.jpg')
 background = pygame.transform.scale(background, (1280, 1000))
@@ -17,6 +17,8 @@ pygame.display.set_icon(icon)
 
 # Sound
 mixer.music.load('assets/osu.mp3')
+hitsound = mixer.Sound('assets/soft-hitnormal.wav')
+hitsound.set_volume(0.1)
 
 # Images
 leftR = pygame.image.load('assets/leftR.png')
@@ -171,26 +173,27 @@ def check_timingD (arrowY):
 
 def press (time, show):
     global arrowLX, arrowLX_change, arrowLY, arrowRX, arrowRY, arrowRX_change, arrowUX, arrowUY, arrowUY_change, arrowDX, arrowDY, arrowDY_change
-    hitsound = mixer.Sound('assets/soft-hitnormal.wav')
-    hitsound.set_volume(0.1)
     if time < show:
-        hitsound.play()
         if pressL:
+            hitsound.play()
             screen.blit(leftD, (185, 412.5))
             arrowLX = 577.5
             arrowLY = 412.5
             # arrowLX_change += -0.01
         if pressR:
+            hitsound.play()
             screen.blit(rightD, (970, 412.5))
             arrowRX = 577.5
             arrowRY = 412.5
             # arrowRX_change += 0.01
         if pressU:
+            hitsound.play()
             screen.blit(upD, (577.5, -20))
             arrowUX = 577.5
             arrowUY = 412.5
             # arrowUY_change += -0.01
         if pressD:
+            hitsound.play()
             screen.blit(downD, (577.5, 805))
             arrowDX = 577.5
             arrowDY = 412.5
@@ -255,42 +258,42 @@ while running:
             if event.key == pygame.K_LEFT:
                 show_press = elapsed_time + 250
                 pressL = True
-                print("pressed left arrow at: ", arrowLX)
+                # print("pressed left arrow at: ", arrowLX)
                 if check_timingL(arrowLX):
                     show_judgement = elapsed_time + 500
 
             if event.key == pygame.K_RIGHT:
                 show_press = elapsed_time + 250
                 pressR = True
-                print("pressed right arrow at: ", arrowRX)
+                # print("pressed right arrow at: ", arrowRX)
                 if check_timingR(arrowRX):
                     show_judgement = elapsed_time + 500
 
             if event.key == pygame.K_UP:
                 show_press = elapsed_time + 250
                 pressU = True
-                print("pressed up arrow at: ", arrowUY)
+                # print("pressed up arrow at: ", arrowUY)
                 if check_timingU(arrowUY):
                     show_judgement = elapsed_time + 500
 
             if event.key == pygame.K_DOWN:
                 show_press = elapsed_time + 250
                 pressD = True
-                print("pressed down arrow at: ", arrowDY)
+                # print("pressed down arrow at: ", arrowDY)
                 if check_timingD(arrowDY):
                     show_judgement = elapsed_time + 500
 
             if event.key == pygame.K_w:
-                arrowUY_change = -2.5
+                arrowUY_change = -5
 
             if event.key == pygame.K_a:
-                arrowLX_change = -2.5
+                arrowLX_change = -5
 
             if event.key == pygame.K_s:
-                arrowDY_change = 2.5
+                arrowDY_change = 5
 
             if event.key == pygame.K_d:
-                arrowRX_change = 2.5
+                arrowRX_change = 5
 
             # Music
             if event.key == pygame.K_p:
