@@ -1,2 +1,2 @@
 # Twist-Twist-Revolution
-A computer vision based rhythm game  
+A computer vision based rhythm game.  
